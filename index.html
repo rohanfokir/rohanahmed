@@ -1,13 +1,13 @@
-<div class="box" id="gallery">
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
 
-    <h2>My Gallery</h2>
-
-    <div class="gallery">
-        <img src="photo1.jpg" alt="Photo 1">
-        <img src="photo2.jpg" alt="Photo 2">
-        <img src="photo3.jpg" alt="Photo 3">
-        <img src="photo4.jpg" alt="Photo 4">
-        <img src="photo5.jpg" alt="Photo 5">
-    </div>
-
-</div>
+.gallery img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+}
