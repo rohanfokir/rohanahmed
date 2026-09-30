@@ -4,10 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohan Website</title>
+<div id="datetime"></div>
 
 
+<style>
+#datetime {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px;
+}
+</style>
 
+<script>
+function showDateTime() {
+    const now = new Date();
 
+    const date = now.toLocaleDateString('bn-BD', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+
+    const time = now.toLocaleTimeString('bn-BD', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+
+    document.getElementById("datetime").innerHTML =
+        "📅 " + date + "<br>🕒 " + time;
+}
+
+showDateTime();
+setInterval(showDateTime, 1000);
+</script>
 <body>
     
 </body>
