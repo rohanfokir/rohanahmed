@@ -171,7 +171,54 @@
         </p>
 
     </section>
+<!-- Back to Top Button -->
+<button onclick="topFunction()" id="topBtn" title="Go to top">↑</button>
 
+<style>
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+#topBtn:hover {
+    background: #555;
+}
+</style>
+
+<script>
+window.onscroll = function() {
+    scrollFunction();
+};
+
+function scrollFunction() {
+    let btn = document.getElementById("topBtn");
+
+    if (document.body.scrollTop > 200 ||
+        document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+}
+
+function topFunction() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+</script>
 </body>
 </html>
         
