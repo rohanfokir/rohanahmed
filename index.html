@@ -183,8 +183,41 @@ setInterval(showDateTime, 1000);
             margin-bottom: 20px;
         }
     </style>
-</head>
+    <section id="guestbook">
+    <h2>Guestbook</h2>
 
+    <input type="text" id="guestName" placeholder="Your Name">
+    <br><br>
+
+    <textarea id="guestMessage" placeholder="Write your message"></textarea>
+    <br><br>
+
+    <button onclick="addMessage()">Submit</button>
+
+    <div id="messages"></div>
+</section>
+</head>
+<script>
+function addMessage() {
+    let name = document.getElementById("guestName").value;
+    let message = document.getElementById("guestMessage").value;
+
+    if (name === "" || message === "") {
+        alert("Please enter your name and message.");
+        return;
+    }
+
+    let newMessage = document.createElement("div");
+
+    newMessage.innerHTML =
+        "<b>" + name + "</b><p>" + message + "</p><hr>";
+
+    document.getElementById("messages").appendChild(newMessage);
+
+    document.getElementById("guestName").value = "";
+    document.getElementById("guestMessage").value = "";
+}
+</script>
 <body>
 
     <section id="about">
