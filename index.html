@@ -15,18 +15,26 @@
     margin: 15px;
 }
 </style>
+<style>
+#datetime {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px;
+}
+</style>
 
 <script>
 function showDateTime() {
     const now = new Date();
 
-    const date = now.toLocaleDateString('bn-BD', {
+    const date = now.toLocaleDateString('en-US', {
         day: 'numeric',
         month: 'long',
         year: 'numeric'
     });
 
-    const time = now.toLocaleTimeString('bn-BD', {
+    const time = now.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit'
@@ -39,9 +47,8 @@ function showDateTime() {
 showDateTime();
 setInterval(showDateTime, 1000);
 </script>
-<body>
-    
-</body>
+
+    </body>
 </html>
     
         
