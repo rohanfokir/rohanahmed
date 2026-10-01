@@ -275,35 +275,7 @@ function addMessage() {
     background: #555;
 }
 }
-</style>
-    
-
-<script>
-window.onscroll = function() {
-    scrollFunction();
-};
-
-function scrollFunction() {
-    let btn = document.getElementById("topBtn");
-
-    if (document.body.scrollTop > 200 ||
-        document.documentElement.scrollTop > 200) {
-        btn.style.display = "block";
-    } else {
-        btn.style.display = "none";
-    }
-}
-
-function topFunction() {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-</script>
-</body>
-</html>
-/* 📱 Mobile Friendly */
+</style
 @media screen and (max-width: 600px) {
 
     body {
@@ -393,7 +365,33 @@ function topFunction() {
     textarea {
         width: 100%;
     }
-}        
+}
+
+<script>
+window.onscroll = function() {
+    scrollFunction();
+};
+
+function scrollFunction() {
+    let btn = document.getElementById("topBtn");
+
+    if (document.body.scrollTop > 200 ||
+        document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
+}
+
+function topFunction() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+</script>
+</body>
+</html>
 
 
 
