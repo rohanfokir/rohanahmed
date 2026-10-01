@@ -267,11 +267,85 @@ setInterval(showDateTime, 1000);
     <section id="gallery">
     <h2>Gallery</h2>
 
+    <section id="gallery">
+    <h2>Gallery</h2>
+
     <div class="gallery">
-        <img src="photo1.jpg" alt="Photo 1">
-        <img src="photo2.jpg" alt="Photo 2">
-        <img src="photo3.jpg" alt="Photo 3">
+        <img src="photo1.jpg" alt="Photo 1" onclick="openImage(this.src)">
+        <img src="photo2.jpg" alt="Photo 2" onclick="openImage(this.src)">
+        <img src="photo3.jpg" alt="Photo 3" onclick="openImage(this.src)">
     </div>
+</section>
+
+<!-- Full Screen Image -->
+<div id="imageViewer" onclick="closeImage()">
+    <span class="close">&times;</span>
+    <img id="bigImage" src="" alt="Large Image">
+</div>
+
+<style>
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery img {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#imageViewer {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+#imageViewer img {
+    max-width: 95%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .gallery img {
+        width: 100%;
+        max-width: 300px;
+        height: 200px;
+    }
+}
+</style>
+
+<script>
+function openImage(src) {
+    document.getElementById("bigImage").src = src;
+    document.getElementById("imageViewer").style.display = "flex";
+}
+
+function closeImage() {
+    document.getElementById("imageViewer").style.display = "none";
+}
+</script>
 </section>
 <style>
     nav {
