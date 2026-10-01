@@ -264,7 +264,15 @@ setInterval(showDateTime, 1000);
         <a href="#contact">Contact</a>
         <a href="#gallery">Gallery</a>
         <section id="gallery">
-    
+    <section id="gallery">
+    <h2>Gallery</h2>
+
+    <div class="gallery">
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="photo2.jpg" alt="Photo 2">
+        <img src="photo3.jpg" alt="Photo 3">
+    </div>
+</section>
 <style>
     nav {
         background: #222;
@@ -285,7 +293,21 @@ setInterval(showDateTime, 1000);
     }
 </style>
             
-            
+ <style>
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery img {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+</style>           
 <head>
     
   <style>
