@@ -14,7 +14,63 @@
 html {
     scroll-behavior: smooth;
 }
+Writing
+<!-- Search Box -->
+<div class="search-container">
+    <input
+        type="search"
+        id="siteSearch"
+        placeholder="Search my website..."
+        aria-label="Search my website"
+    >
+    <button type="button" onclick="searchWebsite()">
+        Search
+    </button>
+</div>
+    <style>
+       /* Search Box Design */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 0 12px;
+}
 
+.search-container input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 2px solid #00bcd4;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-container button {
+    padding: 12px 16px;
+    background: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background: #0097a7;
+}
+
+#searchMessage {
+    text-align: center;
+    color: white;
+    margin: 10px;
+}
+    <style>
+
+<p id="searchMessage" role="status"></p>
 body {
     margin: 0;
     padding: 0;
@@ -795,7 +851,59 @@ document.getElementById("siteSearch").addEventListener(
     }
 );
 </script>
+<script>
+function searchWebsite() {
+    const input = document.getElementById("siteSearch");
+    const message = document.getElementById("searchMessage");
+    const query = input.value.trim().toLowerCase();
 
+    if (!query) {
+        message.textContent = "Please enter something to search.";
+        return;
+    }
+
+    const sections = document.querySelectorAll("body section");
+    let found = null;
+
+    sections.forEach(function(section) {
+        const text = section.innerText.toLowerCase();
+        const heading = section.querySelector("h1, h2, h3");
+        const headingText = heading
+            ? heading.innerText.toLowerCase()
+            : "";
+
+        if (!found && (text.includes(query) ||
+                       headingText.includes(query))) {
+            found = section;
+        }
+    });
+
+    if (found) {
+        message.textContent = "Result found!";
+        found.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        found.style.outline = "3px solid #00bcd4";
+
+        setTimeout(function() {
+            found.style.outline = "";
+        }, 2500);
+    } else {
+        message.textContent = "Sorry, nothing found!";
+    }
+}
+
+document.getElementById("siteSearch").addEventListener(
+    "keydown",
+    function(event) {
+        if (event.key === "Enter") {
+            searchWebsite();
+        }
+    }
+);
+</script>
 </body>
     <!-- Search Box -->
 <div class="search-container">
