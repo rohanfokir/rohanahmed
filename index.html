@@ -168,12 +168,78 @@ setInterval(showDateTime, 1000);
 }
 
 </style>
+<script>
+function searchWebsite() {
+    let searchText = document.getElementById("searchInput").value.trim().toLowerCase();
 
+    if (searchText === "") {
+        alert("Please enter something to search.");
+        return;
+    }
+
+    let pageText = document.body.innerText.toLowerCase();
+
+    if (pageText.includes(searchText)) {
+        alert("✅ Found: " + searchText);
+    } else {
+        alert("❌ Nothing found.");
+    }
+}
+</script>
 <body>
     <body>
 
 <!-- Language Change -->
 <div id="google_translate_element"></div>
+        <!-- Search Box -->
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search this website...">
+    <button onclick="searchWebsite()">🔍 Search</button>
+</div>
+        <style>
+            /* Search Box */
+.search-box {
+    width: 100%;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.search-box input {
+    width: 60%;
+    max-width: 400px;
+    padding: 11px 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.search-box button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 25px;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background: #444;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .search-box input {
+        width: 65%;
+    }
+
+    .search-box button {
+        padding: 11px 14px;
+    }
+}
+
+            <style>
 
     <img src="profile.jpg" class="profile" alt="Rohan">
     
@@ -320,8 +386,8 @@ function closeImage() {
       padding: 80px 20px;
       text-align: center; /**/
     }
-  </style>    
-</head>
+  </style> 
+    </head>
             
 
             
