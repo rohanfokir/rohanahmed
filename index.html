@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Rohan Website</title>
 
     <style>
@@ -18,27 +18,28 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            color: #222;
+            background: linear-gradient(135deg, #07111f, #101d35, #07111f);
+            color: #eaf2ff;
+            transition: background 0.35s, color 0.35s;
         }
 
-        /* Bismillah */
         .bismillah {
             text-align: center;
             font-size: 24px;
             font-weight: bold;
             padding: 15px;
+            color: #60a5fa;
+            text-shadow: 0 0 15px rgba(59,130,246,0.35);
         }
 
-        /* Date & Time */
         #datetime {
             text-align: center;
             font-size: 18px;
             font-weight: bold;
             margin: 10px;
+            color: #93c5fd;
         }
 
-        /* Search */
         .search-box {
             text-align: center;
             margin: 15px auto;
@@ -49,27 +50,28 @@
             width: 60%;
             max-width: 400px;
             padding: 11px 15px;
-            border: 1px solid #ccc;
+            border: 1px solid #3b82f6;
             border-radius: 25px;
             font-size: 16px;
             outline: none;
+            background: #142238;
+            color: white;
         }
 
         .search-box button {
             padding: 11px 18px;
             border: none;
             border-radius: 25px;
-            background: #222;
+            background: #2563eb;
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
 
         .search-box button:hover {
-            background: #555;
+            background: #1d4ed8;
         }
 
-        /* Profile */
         .profile {
             display: block;
             width: 150px;
@@ -77,12 +79,15 @@
             object-fit: cover;
             border-radius: 50%;
             margin: 20px auto;
+            border: 4px solid #60a5fa;
+            box-shadow: 0 0 25px rgba(59,130,246,0.4);
         }
 
-        /* Navigation */
         nav {
-            background: #222;
-            padding: 15px;
+            background: rgba(5,13,27,0.96);
+            border-bottom: 1px solid #2563eb;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            padding: 12px 5px;
             text-align: center;
             position: sticky;
             top: 0;
@@ -90,129 +95,233 @@
         }
 
         nav a {
+            display: inline-block;
             color: white;
             text-decoration: none;
-            margin: 0 12px;
-            font-size: 17px;
+            margin: 0 8px;
+            padding: 7px 0;
+            font-size: 15px;
             font-weight: bold;
         }
 
         nav a:hover {
-            color: #ddd;
+            color: #60a5fa;
         }
 
-        /* Sections */
         section {
             width: 92%;
             max-width: 900px;
             margin: 30px auto;
             padding: 25px;
-            background: white;
+            background: #101d31;
+            border: 1px solid #263c5b;
             border-radius: 15px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.22);
+            scroll-margin-top: 75px;
         }
 
         section h2 {
             text-align: center;
+            color: #60a5fa;
         }
 
-        /* Home */
         .home {
             text-align: center;
             padding: 60px 20px;
+            background: linear-gradient(135deg, #101d31, #172d50);
+            border-color: #3b82f6;
         }
 
-        /* About */
+        .home h1 {
+            color: #93c5fd;
+            animation: welcomeGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes welcomeGlow {
+            from {
+                text-shadow: 0 0 5px rgba(96,165,250,0.2);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(96,165,250,0.65);
+            }
+        }
+
         #about p {
             line-height: 1.7;
             text-align: center;
         }
 
-        /* Education */
-        .education-box {
+        .education-box,
+        .result-box,
+        .travel-card {
             margin: 20px auto;
             padding: 18px;
+            max-width: 750px;
+            background: #15253d;
+            border: 1px solid #2d4568;
+            border-radius: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .education-box {
             max-width: 650px;
-            border-radius: 12px;
-            background: #f7f7f7;
             text-align: center;
         }
 
-        /* Gallery */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .gallery img {
-            width: 220px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.03);
-        }
-
-        /* Full Screen Image */
-        #imageViewer {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.92);
-            justify-content: center;
-            align-items: center;
-        }
-
-        #imageViewer img {
-            max-width: 95%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-        }
-
-        /* Result */
         .result-box {
             max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #f8f8f8;
-            border-radius: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.10);
             text-align: left;
         }
 
         .result-box p {
             padding: 8px;
             margin: 5px 0;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #30425c;
+            overflow-wrap: anywhere;
         }
 
-        /* Travel */
         .travel-card {
-            max-width: 750px;
-            margin: 18px auto;
-            padding: 18px;
-            background: #f8f8f8;
-            border-radius: 12px;
             text-align: center;
+            line-height: 1.6;
+        }
+
+        .education-box:hover,
+        .result-box:hover,
+        .travel-card:hover {
+            border-color: #60a5fa;
+        }
+
+        /* Gallery Cover */
+        .gallery-cover {
+            max-width: 420px;
+            margin: 20px auto;
+            padding: 35px 15px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #172554, #2563eb);
+            border-radius: 18px;
+            box-shadow: 0 5px 18px #0004;
+        }
+
+        .gallery-cover h3 {
+            font-size: 23px;
+            margin: 5px 0 10px;
+        }
+
+        .gallery-cover button,
+        .hide-gallery {
+            border: none;
+            border-radius: 25px;
+            padding: 12px 22px;
+            background: white;
+            color: #1d4ed8;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .gallery-cover button:hover,
+        .hide-gallery:hover {
+            background: #dbeafe;
+        }
+
+        /* Year-wise Albums */
+        .year-heading {
+            text-align: center;
+            color: #60a5fa;
+            margin: 22px 0 15px;
+        }
+
+        .year-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px auto;
+        }
+
+        .year-buttons button {
+            padding: 13px 20px;
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            background: #15253d;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .year-buttons button:hover {
+            background: #2563eb;
+        }
+
+        /* Photo Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .gallery[hidden],
+        #yearAlbums[hidden],
+        #allPhotos[hidden] {
+            display: none !important;
+        }
+
+        .gallery img {
+            display: block;
+            width: 100%;
+            height: 115px;
+            object-fit: cover;
+            border-radius: 9px;
+            border: 2px solid #263c5b;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+            border-color: #60a5fa;
+        }
+
+        #allPhotos img[hidden] {
+            display: none !important;
+        }
+
+        .hide-gallery {
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Full Screen Image Viewer */
+        #imageViewer {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        #imageViewer #bigImage {
+            max-width: 95%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        #imageViewer .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: white;
+            background: transparent;
+            border: none;
+            font-size: 38px;
+            cursor: pointer;
         }
 
         /* Contact */
@@ -221,7 +330,8 @@
         }
 
         #contact a {
-            color: #0066cc;
+            color: #60a5fa;
+            overflow-wrap: anywhere;
         }
 
         /* Footer */
@@ -229,9 +339,10 @@
             width: 100%;
             text-align: center;
             padding: 25px;
-            background: #222;
+            background: #050d1b;
             color: white;
             margin-top: 40px;
+            border-top: 1px solid #2563eb;
         }
 
         /* Back to Top */
@@ -242,7 +353,7 @@
             right: 20px;
             z-index: 999;
             border: none;
-            background: #333;
+            background: #2563eb;
             color: white;
             cursor: pointer;
             width: 45px;
@@ -252,12 +363,107 @@
         }
 
         #topBtn:hover {
-            background: #555;
+            background: #1d4ed8;
+        }
+
+        /* Theme Button */
+        #themeBtn {
+            display: block;
+            margin: 12px auto;
+            padding: 10px 18px;
+            border: 1px solid #60a5fa;
+            border-radius: 25px;
+            background: #142238;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        #themeBtn:hover {
+            background: #2563eb;
+        }
+
+        .search-highlight {
+            background: #ffeb3b;
+            color: #111;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            background: #eef4fc;
+            color: #1e293b;
+        }
+
+        body.light-mode .bismillah,
+        body.light-mode #datetime {
+            color: #1d4ed8;
+        }
+
+        body.light-mode .search-box input {
+            background: white;
+            color: #222;
+        }
+
+        body.light-mode nav {
+            background: #1e3a5f;
+        }
+
+        body.light-mode section {
+            background: white;
+            border-color: #d5e2f2;
+        }
+
+        body.light-mode section h2,
+        body.light-mode .year-heading {
+            color: #1d4ed8;
+        }
+
+        body.light-mode .home {
+            background: linear-gradient(135deg, #fff, #dbeafe);
+        }
+
+        body.light-mode .home h1 {
+            color: #1d4ed8;
+        }
+
+        body.light-mode .education-box,
+        body.light-mode .result-box,
+        body.light-mode .travel-card {
+            background: #f1f6fd;
+            border-color: #d5e2f2;
+        }
+
+        body.light-mode .result-box p {
+            border-bottom-color: #d5e2f2;
+        }
+
+        body.light-mode .year-buttons button {
+            background: #dbeafe;
+            color: #1e3a5f;
+        }
+
+        body.light-mode #themeBtn {
+            background: #dbeafe;
+            color: #1e3a5f;
+        }
+
+        body.light-mode footer {
+            background: #1e3a5f;
+        }
+
+        body.light-mode #contact a {
+            color: #1d4ed8;
+        }
+
+        body.light-mode .gallery img {
+            border-color: #d5e2f2;
         }
 
         /* Mobile */
         @media (max-width: 600px) {
-
             .bismillah {
                 font-size: 20px;
             }
@@ -281,18 +487,19 @@
             }
 
             nav {
-                padding: 12px 5px;
+                padding: 10px 3px;
             }
 
             nav a {
-                margin: 0 5px;
-                font-size: 13px;
+                margin: 0 4px;
+                font-size: 12px;
             }
 
             section {
                 width: 94%;
                 padding: 15px;
                 margin: 20px auto;
+                border-radius: 12px;
             }
 
             .home {
@@ -303,9 +510,22 @@
                 font-size: 25px;
             }
 
+            .gallery {
+                gap: 5px;
+            }
+
             .gallery img {
-                width: 140px;
-                height: 100px;
+                height: 95px;
+            }
+
+            .gallery-cover {
+                margin: 15px 5px;
+            }
+
+            .year-buttons button {
+                flex: 1 1 40%;
+                padding: 12px 8px;
+                font-size: 14px;
             }
 
             .travel-card {
@@ -317,437 +537,33 @@
                 bottom: 20px;
             }
         }
-        
-/* ===== PREMIUM ROHAN WEBSITE DESIGN ===== */
-
-body {
-    background: linear-gradient(135deg, #07111f, #101d35, #07111f);
-    color: #eaf2ff;
-    transition: background 0.35s, color 0.35s;
-}
-
-.bismillah {
-    color: #60a5fa;
-    text-shadow: 0 0 15px rgba(59,130,246,0.35);
-}
-
-#datetime {
-    color: #93c5fd;
-}
-
-.search-box input {
-    background: #142238;
-    color: white;
-    border: 1px solid #3b82f6;
-}
-
-.search-box button {
-    background: #2563eb;
-    transition: 0.3s;
-}
-
-.search-box button:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
-}
-
-.profile {
-    border: 4px solid #60a5fa;
-    box-shadow: 0 0 25px rgba(59,130,246,0.4);
-    transition: transform 0.3s;
-}
-
-.profile:hover {
-    transform: scale(1.05);
-}
-
-nav {
-    background: rgba(5, 13, 27, 0.96);
-    border-bottom: 1px solid #2563eb;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-}
-
-nav a {
-    display: inline-block;
-    padding: 7px 0;
-    transition: color 0.3s, transform 0.3s;
-}
-
-nav a:hover {
-    color: #60a5fa;
-    transform: translateY(-2px);
-}
-
-section {
-    background: #101d31;
-    border: 1px solid #263c5b;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.22);
-    transition: border-color 0.3s, transform 0.3s;
-}
-
-section h2 {
-    color: #60a5fa;
-}
-
-.home {
-    background: linear-gradient(135deg, #101d31, #172d50);
-    border-color: #3b82f6;
-}
-
-.home h1 {
-    color: #93c5fd;
-    animation: welcomeGlow 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes welcomeGlow {
-    from {
-        text-shadow: 0 0 5px rgba(96,165,250,0.2);
-    }
-    to {
-        text-shadow: 0 0 20px rgba(96,165,250,0.65);
-    }
-}
-
-.education-box,
-.result-box,
-.travel-card {
-    background: #15253d;
-    border: 1px solid #2d4568;
-    border-radius: 14px;
-    transition: transform 0.3s, border-color 0.3s;
-}
-
-.education-box:hover,
-.result-box:hover,
-.travel-card:hover {
-    transform: translateY(-3px);
-    border-color: #60a5fa;
-}
-
-.result-box p {
-    border-bottom-color: 1#30425c;
-}
-
-.gallery img {
-    border: 2px solid #263c5b;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    transition: transform 0.3s, border-color 0.3s;
-}
-
-.gallery img:hover {
-    transform: scale(1.04);
-    border-color: #60a5fa;
-}
-
-#contact a {
-    color: #60a5fa;
-    overflow-wrap: anywhere;
-}
-
-footer {
-    background: #050d1b;
-    border-top: 1px solid #2563eb;
-}
-
-#topBtn {
-    background: #2563eb;
-    box-shadow: 0 4px 15px rgba(37,99,235,0.4);
-}
-
-#themeBtn {
-    display: block;
-    margin: 12px auto;
-    padding: 10px 18px;
-    border: 1px solid #60a5fa;
-    border-radius: 25px;
-    background: #142238;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-#themeBtn:hover {
-    background: #2563eb;
-}
-
-/* LIGHT MODE */
-body.light-mode {
-    background: #eef4fc;
-    color: #1e293b;
-}
-
-body.light-mode .bismillah,
-body.light-mode #datetime {
-    color: #1d4ed8;
-}
-
-body.light-mode .search-box input {
-    background: white;
-    color: #222;
-}
-
-body.light-mode nav {
-    background: #1e3a5f;
-}
-
-body.light-mode section {
-    background: white;
-    border-color: #d5e2f2;
-}
-
-body.light-mode section h2 {
-    color: #1d4ed8;
-}
-
-body.light-mode .home {
-    background: linear-gradient(135deg, #ffffff, #dbeafe);
-}
-
-body.light-mode .home h1 {
-    color: #1d4ed8;
-}
-
-body.light-mode .education-box,
-body.light-mode .result-box,
-body.light-mode .travel-card {
-    background: #f1f6fd;
-    border-color: #d5e2f2;
-}
-
-body.light-mode .result-box p {
-    border-bottom-color: #d5e2f2;
-}
-
-body.light-mode #themeBtn {
-    background: #dbeafe;
-    color: #1e3a5f;
-}
-
-body.light-mode footer {
-    background: #1e3a5f;
-}
-
-body.light-mode .gallery img {
-    border-color: #d5e2f2;
-}
-
-@media (max-width: 600px) {
-    nav a {
-        margin: 0 5px;
-        font-size: 13px;
-    }
-
-    .gallery img {
-        width: calc(50% - 8px);
-        height: 115px;
-    }
-
-    section {
-        border-radius: 12px;
-    }
-}
-        .search-highlight {
-    background: #ffeb3b;
-    color: #111;
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-/* Gallery Cover */
-.gallery-cover {
-    max-width: 420px;
-    margin: 20px auto;
-    padding: 35px 15px;
-    text-align: center;
-    color: white;
-    background: linear-gradient(135deg, #172554, #2563eb);
-    border-radius: 18px;
-    box-shadow: 0 5px 18px #0004;
-}
-
-.gallery-cover h3 {
-    font-size: 23px;
-    margin: 5px 0 10px;
-}
-
-.gallery-cover p {
-    margin-bottom: 20px;
-}
-
-.gallery-cover button,
-.hide-gallery {
-    border: none;
-    border-radius: 25px;
-    padding: 12px 22px;
-    background: white;
-    color: #1d4ed8;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Photo Grid */
-.gallery[hidden] {
-    display: none !important;
-}
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-.gallery img {
-    display: block;
-    width: 100%;
-    height: 115px;
-    object-fit: cover;
-    border-radius: 9px;
-    cursor: pointer;
-}
-
-.hide-gallery {
-    grid-column: 1 / -1;
-    justify-self: center;
-    margin: 10px auto;
-}
-
-/* Large Image Viewer */
-#imageViewer {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: rgba(0, 0, 0, 0.95);
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-#imageViewer #bigImage {
-    max-width: 95%;
-    max-height: 85vh;
-    object-fit: contain;
-}
-
-#imageViewer .close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: white;
-    background: transparent;
-    border: none;
-    font-size: 38px;
-    cursor: pointer;
-}
-
-@media (max-width: 480px) {
-    .gallery {
-        gap: 5px;
-    }
-
-    .gallery img {
-        height: 95px;
-    }
-
-    .gallery-cover {
-        margin: 15px 5px;
-    }
-}
-
-/* Year-wise Gallery Albums */
-.year-heading {
-    text-align: center;
-    color: #60a5fa;
-    margin: 22px 0 15px;
-}
-
-.year-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin: 15px auto;
-}
-
-.year-buttons button {
-    padding: 13px 20px;
-    border: 1px solid #3b82f6;
-    border-radius: 12px;
-    background: #15253d;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.year-buttons button:hover {
-    background: #2563eb;
-}
-
-#yearAlbums[hidden],
-#allPhotos[hidden] {
-    display: none !important;
-}
-
-.hide-gallery {
-    display: block;
-    margin: 20px auto;
-}
-
-body.light-mode .year-buttons button {
-    background: #dbeafe;
-    color: #1e3a5f;
-}
-
-@media (max-width: 480px) {
-    .year-buttons button {
-        flex: 1 1 40%;
-        padding: 12px 8px;
-        font-size: 14px;
-    }
-}
-/* Fix year-wise gallery filtering */
-#allPhotos img[hidden] {
-    display: none !important;
-}
-
-#allPhotos[hidden] {
-    display: none !important;
-}
     </style>
 </head>
 
 <body>
 
-    <!-- Bismillah -->
     <div class="bismillah">
         Bismillahir Rahmanir Raheem
     </div>
 
-    <!-- Date & Time -->
     <div id="datetime"></div>
-    
-<button id="themeBtn" onclick="toggleTheme()">
-    ☀️ Light Mode
-</button>
 
+    <button id="themeBtn" onclick="toggleTheme()">
+        ☀️ Light Mode
+    </button>
 
-    <!-- Search -->
     <div class="search-box">
         <input
             type="text"
             id="searchInput"
             placeholder="Search this website..."
-            onkeypress="if(event.key === 'Enter') searchWebsite()"
+            onkeydown="if(event.key === 'Enter') searchWebsite()"
         >
         <button onclick="searchWebsite()">🔍 Search</button>
     </div>
 
     <!-- Profile Picture -->
-    <img src="profile.jpg" class="profile" alt="Rohan">
+    <img src="profile.jpg" class="profile" alt="Rohan" loading="eager">
 
     <!-- Navigation -->
     <nav>
@@ -768,7 +584,6 @@ body.light-mode .year-buttons button {
 
     <!-- About -->
     <section id="about">
-
         <h2>About Me</h2>
 
         <p>
@@ -802,12 +617,10 @@ body.light-mode .year-buttons button {
             He hopes that more of his poems, stories and novels
             will be published in the future, Insha'Allah.
         </p>
-
     </section>
 
     <!-- Education -->
     <section id="education">
-
         <h2>My Education</h2>
 
         <div class="education-box">
@@ -826,146 +639,146 @@ body.light-mode .year-buttons button {
                 Sreerampur ML High School,
                 Jamalpur Sadar, Jamalpur
             </p>
-
-            <p>
-                <b>Department:</b> Science
-            </p>
+            <p><b>Department:</b> Science</p>
         </div>
 
         <div class="education-box">
             <h3>Diploma in Engineering - Running</h3>
-
             <p>
                 <b>Institute:</b>
                 Mymensingh Government Polytechnic Institute
             </p>
-
             <p>
                 <b>Department:</b>
-                Computer Science & Technology (CST)
+                Computer Science &amp; Technology (CST)
             </p>
         </div>
-
     </section>
 
-    
+    <!-- Gallery -->
+    <section id="gallery">
+        <h2>📸 My Gallery</h2>
 
-<!-- Gallery -->
-<section id="gallery">
-    <h2>📸 My Gallery</h2>
+        <div class="gallery-cover">
+            <h3>My Photo Collection</h3>
+            <p>Memories • Friends • Travels</p>
 
-    <div class="gallery-cover">
-        <h3>My Photo Collection</h3>
-        <p>Memories • Friends • Travels</p>
-
-        <button type="button" onclick="toggleGallery()">
-            View All Photos
-        </button>
-    </div>
-
-    <div id="yearAlbums" hidden>
-        <h3 class="year-heading">Select a Year</h3>
-
-        <div class="year-buttons">
-            <button onclick="showYear('2019')">📁 2019</button>
-            <button onclick="showYear('2020')">📁 2020</button>
-            <button onclick="showYear('2021')">📁 2021</button>
-            <button onclick="showYear('2022')">📁 2022</button>
-            <button onclick="showYear('2023')">📁 2023</button>
-            <button onclick="showYear('2024')">📁 2024</button>
-            <button onclick="showYear('2025')">📁 2025</button>
-            <button onclick="showYear('2026')">📁 2026</button>
+            <button type="button" onclick="toggleGallery()">
+                View All Photos
+            </button>
         </div>
 
-        <h3 id="selectedYearTitle" class="year-heading"></h3>
+        <div id="yearAlbums" hidden>
+            <h3 class="year-heading">Select a Year</h3>
 
-        <div class="gallery" id="allPhotos" hidden>
-            <img data-year="2026" src="photo1.jpg" alt="Photo 1" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo2.jpg" alt="Photo 2" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo3.jpg" alt="Photo 3" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo14.jpg" alt="Photo 14" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo15.jpg" alt="Photo 15" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo16.jpg" alt="Photo 16" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo19.jpg" alt="Photo 19" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo20.jpg" alt="Photo 20" onclick="openImage(this.src)">
-            <img data-year="2019" src="photo41.jpg" alt="Photo 41" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo42.jpg" alt="Photo 42" onclick="openImage(this.src)">
-            <img data-year="2026" src="photo13.jpg" alt="Photo 13" onclick="openImage(this.src)">
+            <div class="year-buttons">
+                <button onclick="showYear('2019')">📁 2019</button>
+                <button onclick="showYear('2020')">📁 2020</button>
+                <button onclick="showYear('2021')">📁 2021</button>
+                <button onclick="showYear('2022')">📁 2022</button>
+                <button onclick="showYear('2023')">📁 2023</button>
+                <button onclick="showYear('2024')">📁 2024</button>
+                <button onclick="showYear('2025')">📁 2025</button>
+                <button onclick="showYear('2026')">📁 2026</button>
+            </div>
 
-            <!-- Add your remaining existing photos here.
-                 Use the correct year for each photo. -->
+            <h3 id="selectedYearTitle" class="year-heading"></h3>
+
+            <div class="gallery" id="allPhotos" hidden>
+
+                <img data-year="2026" src="photo1.jpg"
+                     alt="Photo 1" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo2.jpg"
+                     alt="Photo 2" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo3.jpg"
+                     alt="Photo 3" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo14.jpg"
+                     alt="Photo 14" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo15.jpg"
+                     alt="Photo 15" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo16.jpg"
+                     alt="Photo 16" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo19.jpg"
+                     alt="Photo 19" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo20.jpg"
+                     alt="Photo 20" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2019" src="photo41.jpg"
+                     alt="Photo 41" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo42.jpg"
+                     alt="Photo 42" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <img data-year="2026" src="photo13.jpg"
+                     alt="Photo 13" loading="lazy"
+                     onclick="openImage(this.src)">
+
+                <!-- Add your other existing photos here.
+                     Set the correct data-year for each photo. -->
+
+            </div>
+
+            <button type="button" class="hide-gallery"
+                    onclick="backToYears()">
+                ← Back to Years
+            </button>
         </div>
+    </section>
 
-        <button type="button" class="hide-gallery"
-                onclick="backToYears()">
-            ← Back to Years
+    <!-- Single Full Screen Image Viewer -->
+    <div id="imageViewer" onclick="closeImage()">
+        <button class="close" type="button"
+                aria-label="Close image"
+                onclick="event.stopPropagation(); closeImage()">
+            &times;
         </button>
+
+        <img id="bigImage" src="" alt="Large Image"
+             onclick="event.stopPropagation()">
     </div>
-</section>
-
-<!-- Full Screen Image Viewer -->
-<div id="imageViewer" onclick="closeImage()">
-    <button class="close" type="button"
-            onclick="closeImage(); event.stopPropagation();">
-        &times;
-    </button>
-
-    <img id="bigImage" src="" alt="Large Image"
-         onclick="event.stopPropagation()">
-</div>
-
-
-
-
-<!-- Full Screen Image Viewer -->
-<div id="imageViewer" onclick="closeImage()">
-    <button class="close" type="button"
-            onclick="closeImage(); event.stopPropagation();">
-        &times;
-    </button>
-
-    <img id="bigImage" src="" alt="Large Image"
-         onclick="event.stopPropagation()">
-</div>
-
 
     <!-- Result -->
     <section id="result">
-
         <h2>My Result</h2>
 
-        <!-- PSC -->
         <div class="result-box">
-
             <h3>PSC Result</h3>
-
             <p><b>Exam:</b> PSC</p>
             <p><b>School:</b> Sreerampur Govt Primary School</p>
             <p><b>Board:</b> Mymensingh</p>
             <p><b>GPA:</b> GPA-5.00 with General Grade Scholarship</p>
             <p><b>Result:</b> Passed</p>
-
         </div>
 
-        <!-- JSC -->
         <div class="result-box">
-
             <h3>JSC Result</h3>
-
             <p><b>Exam:</b> JSC</p>
             <p><b>School:</b> Sreerampur ML High School</p>
             <p><b>Board:</b> Mymensingh</p>
             <p><b>Session:</b> 2022</p>
             <p><b>GPA:</b> Passed</p>
             <p><b>Result:</b> Passed</p>
-
         </div>
 
-        <!-- SSC -->
         <div class="result-box">
-
             <h3>SSC Result</h3>
-
             <p><b>Exam:</b> SSC</p>
             <p><b>Department:</b> Science</p>
             <p><b>School:</b> Sreerampur ML High School</p>
@@ -973,88 +786,84 @@ body.light-mode .year-buttons button {
             <p><b>Session:</b> 2023-2024</p>
             <p><b>GPA:</b> GPA-5.00</p>
             <p><b>Result:</b> Passed</p>
-
         </div>
-
     </section>
 
     <!-- Travel -->
     <section id="travel">
-
         <h2>🛣️ Rohan's Travels 🌍</h2>
 
         <div class="travel-card">
-            <h3>⛔Mymensingh⛔ </h3>
-                <p>📍Zainul Abedin Park‌ &📍Shoshi Lodge</p>
-            <p>📅Travel Date:</b> December 16, 2024</p>
-           <p>📍 Eastern Heritage Resort</p>
-            <p>📅Travel Date:</b> April 30, 2025</p>
-                
-           <p>📍Bangladesh Agricultural University</p>
-           <p>  📅Travel Date:</b> October 1, 2025</p>
+            <h3>⛔ Mymensingh ⛔</h3>
+            <p>📍 Zainul Abedin Park &amp; Shoshi Lodge</p>
+            <p>📅 <b>Travel Date:</b> December 16, 2024</p>
+
+            <p>📍 Eastern Heritage Resort</p>
+            <p>📅 <b>Travel Date:</b> April 30, 2025</p>
+
+            <p>📍 Bangladesh Agricultural University</p>
+            <p>📅 <b>Travel Date:</b> October 1, 2025</p>
         </div>
 
         <div class="travel-card">
-            <h3> ⛔Netrokona⛔ </h3> 
-                <p>📍Kolmakanda,PanchGao</p>
-            
-           <p> 📅Travel Date:</b>Jun 03,2024 </p>
-            
-                <p> 📍Birishiri &📍Zero Point &📍China Matir Pahar &📍Komolabagan</p>
-               <p>📅Travel Date:</b> April 24, 2026</p>
+            <h3>⛔ Netrokona ⛔</h3>
+            <p>📍 Kolmakanda, PanchGao</p>
+            <p>📅 <b>Travel Date:</b> June 3, 2024</p>
+
+            <p>
+                📍 Birishiri &amp; Zero Point &amp; China Matir Pahar
+                &amp; Komolabagan
+            </p>
+            <p>📅 <b>Travel Date:</b> April 24, 2026</p>
         </div>
 
         <div class="travel-card">
-            <h3> ⛔DHAKA⛔ </h3>
-           <p>📍Ramna Park &📍National Parliament &📍Ziya Udyan</p>
-            <p> 📅Travel Date:</b> November 19, 2024</p>
-          
-                
-               <p> 📍300 Feet Road, Purbachal </p>
-          <p> 📅Travel Date:</b> May 06, 2025 </p> 
-          
-             <p> 📍Dhaka University</p>
-              <p>  📅Travel Date:</b> May 8, 2026 </p>
-            
-             <p> 📍Mirpur Stadium</p>
-         <p>  📅Travel Date:</b> May 9, 2026</p>
-          </div>
+            <h3>⛔ DHAKA ⛔</h3>
+            <p>📍 Ramna Park &amp; National Parliament &amp; Ziya Udyan</p>
+            <p>📅 <b>Travel Date:</b> November 19, 2024</p>
 
-        <div class="travel-card">
-            <h3>⛔Sherpur⛔</h3>
-          <p> 📍Hariyakona,Sreebardi</p>
-            <p> 📅Travel Date:</b> June 16, 2026</p>
+            <p>📍 300 Feet Road, Purbachal</p>
+            <p>📅 <b>Travel Date:</b> May 6, 2025</p>
+
+            <p>📍 Dhaka University</p>
+            <p>📅 <b>Travel Date:</b> May 8, 2026</p>
+
+            <p>📍 Mirpur Stadium</p>
+            <p>📅 <b>Travel Date:</b> May 9, 2026</p>
         </div>
 
         <div class="travel-card">
-            <h3>⛔JAMALPUR⛔</h3>   
-          <p> 📍Govt. Asek Mahamud College &📍Stadium &📍Foyezdi &📍Horticulture Center &📍Jhinai Bridge &📍BGB Camp</p>
-          <p> Travel Date:</b> October 8, 2021</p>
-
-         <p> 📍Shopnoneel Park,Sarishabari,Jamalpur</p>
-        <p> 📅Travel Date:</b> July 5, 2023 & March 17, 2024</p>
-            
+            <h3>⛔ Sherpur ⛔</h3>
+            <p>📍 Hariyakona, Sreebardi</p>
+            <p>📅 <b>Travel Date:</b> June 16, 2026</p>
         </div>
 
         <div class="travel-card">
-            <h3> ⛔TANGAIL⛔</h3>
-               <p>📍201 Dome Mosque</p>
-            <p>📅Travel Date:</b> March 15, 2024</p>
+            <h3>⛔ JAMALPUR ⛔</h3>
+            <p>
+                📍 Govt. Asek Mahamud College &amp; Stadium &amp; Foyezdi
+                &amp; Horticulture Center &amp; Jhinai Bridge &amp; BGB Camp
+            </p>
+            <p>📅 <b>Travel Date:</b> October 8, 2021</p>
+
+            <p>📍 Shopnoneel Park, Sarishabari, Jamalpur</p>
+            <p>📅 <b>Travel Date:</b> July 5, 2023 &amp; March 17, 2024</p>
         </div>
 
-    
+        <div class="travel-card">
+            <h3>⛔ TANGAIL ⛔</h3>
+            <p>📍 201 Dome Mosque</p>
+            <p>📅 <b>Travel Date:</b> March 15, 2024</p>
+        </div>
     </section>
 
     <!-- Contact -->
     <section id="contact">
-
         <h2>Contact Me</h2>
 
         <p>
             📞 Phone:
-            <a href="tel:01522137179">
-                01522137179
-            </a>
+            <a href="tel:01522137179">01522137179</a>
         </p>
 
         <p>
@@ -1063,49 +872,37 @@ body.light-mode .year-buttons button {
                 rohanfokir746@gmail.com
             </a>
         </p>
-        
-   <p>
-        🌐 Facebook:
-        <a href="https://www.facebook.com/share/19nBcRi2cK/"
-           target="_blank"
-           rel="noopener noreferrer">
-            Visit My Facebook
-        </a>
-    </p>
 
-    <p>
-        📸 Instagram:
-        <a href="https://www.instagram.com/rohanfokir746?vrfl=MWU5eGNlbWtyMDdncg=="
-           target="_blank"
-           rel="noopener noreferrer">
-            Visit My Instagram
-        </a>
-    </p>
+        <p>
+            🌐 Facebook:
+            <a href="https://www.facebook.com/share/19nBcRi2cK/"
+               target="_blank" rel="noopener noreferrer">
+                Visit My Facebook
+            </a>
+        </p>
 
+        <p>
+            📸 Instagram:
+            <a href="https://www.instagram.com/rohanfokir746?vrfl=MWU5eGNlbWtyMDdncg=="
+               target="_blank" rel="noopener noreferrer">
+                Visit My Instagram
+            </a>
+        </p>
     </section>
 
     <!-- Back to Top -->
-    <button
-        onclick="topFunction()"
-        id="topBtn"
-        title="Go to Top"
-    >
+    <button onclick="topFunction()" id="topBtn"
+            title="Go to Top" aria-label="Back to top">
         ↑
     </button>
 
-    <!-- Footer -->
     <footer>
         © 2026 Rohan
     </footer>
 
-
-    <!-- JavaScript -->
-
     <script>
-
         /* Date & Time */
         function showDateTime() {
-
             const now = new Date();
 
             const date = now.toLocaleDateString('en-US', {
@@ -1125,200 +922,206 @@ body.light-mode .year-buttons button {
         }
 
         showDateTime();
-
         setInterval(showDateTime, 1000);
 
+        /* Open Year Albums */
+        function toggleGallery() {
+            const albums = document.getElementById("yearAlbums");
+            const photos = document.getElementById("allPhotos");
 
-/* Open Year Albums */
-function toggleGallery() {
-    const albums = document.getElementById("yearAlbums");
+            albums.hidden = !albums.hidden;
 
-    albums.hidden = !albums.hidden;
+            if (!albums.hidden) {
+                photos.hidden = true;
 
-    if (!albums.hidden) {
-        document.getElementById("allPhotos").hidden = true;
-
-        albums.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    }
-}
-
-/* Show Photos From Selected Year */
-function showYear(year) {
-    const gallery = document.getElementById("allPhotos");
-    const photos = gallery.querySelectorAll("img");
-    let count = 0;
-
-    photos.forEach(function(photo) {
-        const match = photo.dataset.year === year;
-
-        photo.hidden = !match;
-
-        if (match) count++;
-    });
-
-    document.getElementById("selectedYearTitle").textContent =
-        year + " Photos (" + count + ")";
-
-    gallery.hidden = false;
-
-    gallery.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-}
-
-/* Return to Year Albums */
-function backToYears() {
-    document.getElementById("allPhotos").hidden = true;
-
-    document.getElementById("yearAlbums").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-}
-
-/* Open Large Image */
-function openImage(src) {
-    document.getElementById("bigImage").src = src;
-    document.getElementById("imageViewer").style.display = "flex";
-}
-
-/* Close Large Image */
-function closeImage() {
-    document.getElementById("imageViewer").style.display = "none";
-    document.getElementById("bigImage").src = "";
-}
-
-
-
-
-
-        /* Search */
-
-/* Search Website */
-function searchWebsite() {
-    const input = document.getElementById("searchInput");
-    const searchText = input.value.trim();
-
-    if (!searchText) {
-        alert("Please enter something to search.");
-        return;
-    }
-
-    // Remove previous highlights
-    document.querySelectorAll(".search-highlight").forEach(el => {
-        el.replaceWith(document.createTextNode(el.textContent));
-        el.parentNode?.normalize();
-    });
-
-    const walker = document.createTreeWalker(
-        document.body,
-        NodeFilter.SHOW_TEXT
-    );
-
-    const matches = [];
-    let node;
-
-    while (node = walker.nextNode()) {
-        const parent = node.parentElement;
-
-        if (
-            !parent ||
-            parent.closest("script, style, input, button, nav, #imageViewer, #topBtn, #themeBtn, footer")
-        ) continue;
-
-        if (
-            node.textContent.toLowerCase().includes(searchText.toLowerCase())
-        ) {
-            matches.push(node);
+                albums.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
         }
-    }
 
-    if (matches.length === 0) {
-        alert("Nothing found for: " + searchText);
-        return;
-    }
+        /* Show Photos From Selected Year */
+        function showYear(year) {
+            const gallery = document.getElementById("allPhotos");
+            const photos = gallery.querySelectorAll("img");
+            let count = 0;
 
-    const firstMatch = matches[0];
-    const text = firstMatch.textContent;
-    const index = text.toLowerCase().indexOf(searchText.toLowerCase());
+            photos.forEach(function(photo) {
+                const match = photo.dataset.year === year;
+                photo.hidden = !match;
 
-    const before = document.createTextNode(text.slice(0, index));
-    const highlight = document.createElement("mark");
-    highlight.className = "search-highlight";
-    highlight.textContent = text.slice(index, index + searchText.length);
+                if (match) {
+                    count++;
+                }
+            });
 
-    const after = document.createTextNode(
-        text.slice(index + searchText.length)
-    );
+            document.getElementById("selectedYearTitle").textContent =
+                year + " Photos (" + count + ")";
 
-    const fragment = document.createDocumentFragment();
-    fragment.append(before, highlight, after);
-    firstMatch.parentNode.replaceChild(fragment, firstMatch);
+            gallery.hidden = false;
 
-    highlight.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+            gallery.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
 
-    alert("Found " + matches.length + " matching text location(s).");
-}
+        /* Return to Year Albums */
+        function backToYears() {
+            document.getElementById("allPhotos").hidden = true;
 
+            document.getElementById("yearAlbums").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        /* Open Large Image */
+        function openImage(src) {
+            const viewer = document.getElementById("imageViewer");
+            const bigImage = document.getElementById("bigImage");
+
+            bigImage.src = src;
+            viewer.style.display = "flex";
+        }
+
+        /* Close Large Image */
+        function closeImage() {
+            document.getElementById("imageViewer").style.display = "none";
+            document.getElementById("bigImage").src = "";
+        }
+
+        /* Close Image With Escape Key */
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeImage();
+            }
+        });
+
+        /* Search Website */
+        function searchWebsite() {
+            const input = document.getElementById("searchInput");
+            const searchText = input.value.trim();
+
+            if (!searchText) {
+                alert("Please enter something to search.");
+                return;
+            }
+
+            /* Remove old highlights safely */
+            document.querySelectorAll(".search-highlight").forEach(function(el) {
+                const parent = el.parentNode;
+
+                if (parent) {
+                    el.replaceWith(document.createTextNode(el.textContent));
+                    parent.normalize();
+                }
+            });
+
+            const walker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT
+            );
+
+            const matches = [];
+            let node;
+
+            while ((node = walker.nextNode())) {
+                const parent = node.parentElement;
+
+                if (
+                    !parent ||
+                    parent.closest(
+                        "script, style, input, button, nav, #imageViewer, #topBtn, #themeBtn, footer"
+                    )
+                ) {
+                    continue;
+                }
+
+                if (
+                    node.textContent.toLowerCase().includes(
+                        searchText.toLowerCase()
+                    )
+                ) {
+                    matches.push(node);
+                }
+            }
+
+            if (matches.length === 0) {
+                alert("Nothing found for: " + searchText);
+                return;
+            }
+
+            const firstMatch = matches[0];
+            const text = firstMatch.textContent;
+            const index = text.toLowerCase().indexOf(
+                searchText.toLowerCase()
+            );
+
+            const before = document.createTextNode(text.slice(0, index));
+
+            const highlight = document.createElement("mark");
+            highlight.className = "search-highlight";
+            highlight.textContent = text.slice(
+                index,
+                index + searchText.length
+            );
+
+            const after = document.createTextNode(
+                text.slice(index + searchText.length)
+            );
+
+            const fragment = document.createDocumentFragment();
+            fragment.append(before, highlight, after);
+
+            firstMatch.parentNode.replaceChild(fragment, firstMatch);
+
+            highlight.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            alert(
+                "Found " + matches.length +
+                " matching text location(s)."
+            );
+        }
 
         /* Back to Top */
-        window.onscroll = function() {
-
-            scrollFunction();
-
-        };
-
-
         function scrollFunction() {
-
-            const btn =
-                document.getElementById("topBtn");
+            const btn = document.getElementById("topBtn");
 
             if (
                 document.body.scrollTop > 200 ||
                 document.documentElement.scrollTop > 200
             ) {
-
                 btn.style.display = "block";
-
             } else {
-
                 btn.style.display = "none";
-
             }
         }
 
+        window.addEventListener("scroll", scrollFunction);
 
         function topFunction() {
-
             window.scrollTo({
-
                 top: 0,
-
                 behavior: "smooth"
-
             });
         }
 
-function toggleTheme() {
-    document.body.classList.toggle("light-mode");
+        /* Dark / Light Mode */
+        function toggleTheme() {
+            document.body.classList.toggle("light-mode");
 
-    const isLight =
-        document.body.classList.contains("light-mode");
+            const isLight =
+                document.body.classList.contains("light-mode");
 
-    document.getElementById("themeBtn").textContent =
-        isLight ? "🌙 Dark Mode" : "☀️ Light Mode";
-}
-
+            document.getElementById("themeBtn").textContent =
+                isLight ? "🌙 Dark Mode" : "☀️ Light Mode";
+        }
     </script>
 
 </body>
 </html>
-
