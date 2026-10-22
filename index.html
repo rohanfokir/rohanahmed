@@ -554,6 +554,109 @@ body.light-mode .gallery img {
     font-weight: bold;
 }
 
+/* Gallery Cover */
+.gallery-cover {
+    max-width: 420px;
+    margin: 20px auto;
+    padding: 35px 15px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #172554, #2563eb);
+    border-radius: 18px;
+    box-shadow: 0 5px 18px #0004;
+}
+
+.gallery-cover h3 {
+    font-size: 23px;
+    margin: 5px 0 10px;
+}
+
+.gallery-cover p {
+    margin-bottom: 20px;
+}
+
+.gallery-cover button,
+.hide-gallery {
+    border: none;
+    border-radius: 25px;
+    padding: 12px 22px;
+    background: white;
+    color: #1d4ed8;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Photo Grid */
+.gallery[hidden] {
+    display: none !important;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.gallery img {
+    display: block;
+    width: 100%;
+    height: 115px;
+    object-fit: cover;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.hide-gallery {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin: 10px auto;
+}
+
+/* Large Image Viewer */
+#imageViewer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+#imageViewer #bigImage {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+#imageViewer .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 38px;
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        gap: 5px;
+    }
+
+    .gallery img {
+        height: 95px;
+    }
+
+    .gallery-cover {
+        margin: 15px 5px;
+    }
+}
+
     </style>
 </head>
 
@@ -685,128 +788,57 @@ body.light-mode .gallery img {
 
     </section>
 
-    <!-- Gallery -->
-    <section id="gallery">
+    
+<!-- Gallery -->
+<section id="gallery">
+    <h2>📸 My Gallery</h2>
 
-        <h2>My Gallery</h2>
+    <div class="gallery-cover">
+        <h3>My Photo Collection</h3>
+        <p>Memories • Friends • Travels</p>
 
-        <div class="gallery">
-
-            <img
-                src="photo1.jpg"
-                alt="Photo 1"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo2.jpg"
-                alt="Photo 2"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo3.jpg"
-                alt="Photo 3"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo14.jpg"
-                alt="Photo 14"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo15.jpg"
-                alt="Photo 15"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo16.jpg"
-                alt="Photo 16"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo19.jpg"
-                alt="Photo 19"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo20.jpg"
-                alt="Photo 20"
-                onclick="openImage(this.src)"
-            >
-
-            
-            <img
-                src="photo41.jpg"
-                alt="Photo 41"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo42.jpg"
-                alt="Photo 42"
-                onclick="openImage(this.src)"
-            >
-            
-            <img
-                src="photo43.jpg"
-                alt="Photo 43"
-                onclick="openImage(this.src)"
-            >
-            
-            <img
-                src="photo44.jpg"
-                alt="Photo 44"
-                onclick="openImage(this.src)"
-            >
-            
-            <img
-                src="photo45.jpg"
-                alt="Photo 45"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo46.jpg"
-                alt="Photo 46"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo47.jpg"
-                alt="Photo 47"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo48.jpg"
-                alt="Photo 48"
-                onclick="openImage(this.src)"
-            >
-
-            <img
-                src="photo49.jpg"
-                alt="Photo 49"
-                onclick="openImage(this.src)"
-            >
-
-        </div>
-
-    </section>
-
-    <!-- Full Screen Image -->
-    <div id="imageViewer" onclick="closeImage()">
-
-        <span class="close">&times;</span>
-
-        <img id="bigImage" src="" alt="Large Image">
-
+        <button type="button" onclick="toggleGallery()">
+            View All Photos
+        </button>
     </div>
+
+    <div class="gallery" id="allPhotos" hidden>
+        <img src="photo1.jpg" alt="Photo 1" onclick="openImage(this.src)">
+        <img src="photo2.jpg" alt="Photo 2" onclick="openImage(this.src)">
+        <img src="photo3.jpg" alt="Photo 3" onclick="openImage(this.src)">
+        <img src="photo14.jpg" alt="Photo 14" onclick="openImage(this.src)">
+        <img src="photo15.jpg" alt="Photo 15" onclick="openImage(this.src)">
+        <img src="photo16.jpg" alt="Photo 16" onclick="openImage(this.src)">
+        <img src="photo19.jpg" alt="Photo 19" onclick="openImage(this.src)">
+        <img src="photo20.jpg" alt="Photo 20" onclick="openImage(this.src)">
+        <img src="photo41.jpg" alt="Photo 41" onclick="openImage(this.src)">
+        <img src="photo42.jpg" alt="Photo 42" onclick="openImage(this.src)">
+        <img src="photo43.jpg" alt="Photo 43" onclick="openImage(this.src)">
+        <img src="photo44.jpg" alt="Photo 44" onclick="openImage(this.src)">
+        <img src="photo45.jpg" alt="Photo 45" onclick="openImage(this.src)">
+        <img src="photo46.jpg" alt="Photo 46" onclick="openImage(this.src)">
+        <img src="photo47.jpg" alt="Photo 47" onclick="openImage(this.src)">
+        <img src="photo48.jpg" alt="Photo 48" onclick="openImage(this.src)">
+        <img src="photo49.jpg" alt="Photo 49" onclick="openImage(this.src)">
+
+        <button type="button" class="hide-gallery"
+                onclick="toggleGallery()">
+            Hide Photos
+        </button>
+    </div>
+</section>
+
+<!-- Full Screen Image Viewer -->
+<div id="imageViewer" onclick="closeImage()">
+    <button class="close" type="button"
+            onclick="closeImage(); event.stopPropagation();">
+        &times;
+    </button>
+
+    <img id="bigImage" src="" alt="Large Image"
+         onclick="event.stopPropagation()">
+</div>
+
 
     <!-- Result -->
     <section id="result">
@@ -1022,6 +1054,28 @@ body.light-mode .gallery img {
 
             document.getElementById("imageViewer").style.display = "none";
         }
+        
+function toggleGallery() {
+    const gallery = document.getElementById("allPhotos");
+    gallery.hidden = !gallery.hidden;
+
+    if (!gallery.hidden) {
+        gallery.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+
+function openImage(src) {
+    document.getElementById("bigImage").src = src;
+    document.getElementById("imageViewer").style.display = "flex";
+}
+
+function closeImage() {
+    document.getElementById("imageViewer").style.display = "none";
+}
+
 
 
         /* Search */
