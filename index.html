@@ -1012,7 +1012,38 @@ function searchWebsite() {
     }
 }
 
-            
+     
+/* Open Large Image */
+function openImage(src) {
+    const viewer = document.getElementById("imageViewer");
+    const bigImage = document.getElementById("bigImage");
+
+    if (!viewer || !bigImage) {
+        alert("Image viewer not found!");
+        return;
+    }
+
+    bigImage.src = src;
+    viewer.style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+
+/* Close Large Image */
+function closeImage() {
+    const viewer = document.getElementById("imageViewer");
+    const bigImage = document.getElementById("bigImage");
+
+    if (viewer) {
+        viewer.style.display = "none";
+    }
+
+    if (bigImage) {
+        bigImage.src = "";
+    }
+
+    document.body.style.overflow = "";
+}
+       
     
 
         /* Back to Top */
