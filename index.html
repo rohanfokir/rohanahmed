@@ -999,90 +999,75 @@
             }
         });
 
-        /* Search Website */
-        function searchWebsite() {
-            const input = document.getElementById("searchInput");
-            const searchText = input.value.trim();
+         
+/* Search Website */
+function searchWebsite() {
+    const input = document.getElementById("searchInput");
+    const searchText = input.value.trim().toLowerCase();
 
-            if (!searchText) {
-                alert("Please enter something to search.");
-                return;
-            }
+    if (!searchText) {
+        return;
+    }
 
-            /* Remove old highlights safely */
-            document.querySelectorAll(".search-highlight").forEach(function(el) {
-                const parent = el.parentNode;
-
-                if (parent) {
-                    el.replaceWith(document.createTextNode(el.textContent));
-                    parent.normalize();
-                }
-            });
-
-            const walker = document.createTreeWalker(
-                document.body,
-                NodeFilter.SHOW_TEXT
-            );
-
-            const matches = [];
-            let node;
-
-            while ((node = walker.nextNode())) {
-                const parent = node.parentElement;
-
-                if (
-                    !parent ||
-                    parent.closest(
-                        "script, style, input, button, nav, #imageViewer, #topBtn, #themeBtn, footer"
-                    )
-                ) {
-                    continue;
-                }
-
-                if (
-                    node.textContent.toLowerCase().includes(
-                        searchText.toLowerCase()
-                    )
-                ) {
-                    matches.push(node);
-                }
-            }
-
-            if (matches.length === 0) {
-                alert("Nothing found for: " + searchText);
-                return;
-            }
-
-            const firstMatch = matches[0];
-            const text = firstMatch.textContent;
-            const index = text.toLowerCase().indexOf(
-                searchText.toLowerCase()
-            );
-
-            const before = document.createTextNode(text.slice(0, index));
-
-            const highlight = document.createElement("mark");
-            highlight.className = "search-highlight";
-            highlight.textContent = text.slice(
-                index,
-                index + searchText.length
-            );
-
-            const after = document.createTextNode(
-                text.slice(index + searchText.length)
-            );
-
-            const fragment = document.createDocumentFragment();
-            fragment.append(before, highlight, after);
-
-            firstMatch.parentNode.replaceChild(fragment, firstMatch);
-
-            highlight.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
+    // Remove previous highlights
+    document.querySelectorAll("mark.search-highlight").forEach(function(el) {
+        const parent = el.parentNode;
+        if (parent) {
+            el.replaceWith(document.createTextNode(el.textContent));
+            parent.normalize();
         }
+    });
+
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT
+    );
+
+    let node;
+    let firstHighlight = null;
+
+    while ((node = walker.nextNode())) {
+        const parent = node.parentElement;
+
+        if (!parent ||
+            parent.closest("script, style, input, button, nav, #imageViewer, #topBtn, #themeBtn, footer")) {
+            continue;
+        }
+
+        const text = node.textContent;
+        const index = text.toLowerCase().indexOf(searchText);
+
+        if (index === -1) {
+            continue;
+        }
+
+        const before = document.createTextNode(text.slice(0, index));
+
+        const mark = document.createElement("mark");
+        mark.className = "search-highlight";
+        mark.textContent = text.slice(index, index + searchText.length);
+
+        const after = document.createTextNode(
+            text.slice(index + searchText.length)
+        );
+
+        const fragment = document.createDocumentFragment();
+        fragment.append(before, mark, after);
+        node.parentNode.replaceChild(fragment, node);
+
+        if (!firstHighlight) {
+            firstHighlight = mark;
+        }
+    }
+
+    if (firstHighlight) {
+        firstHighlight.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+}
+
             
     
 
