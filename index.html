@@ -546,6 +546,13 @@ body.light-mode .gallery img {
         border-radius: 12px;
     }
 }
+        .search-highlight {
+    background: #ffeb3b;
+    color: #111;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
 
     </style>
 </head>
@@ -1018,34 +1025,75 @@ body.light-mode .gallery img {
 
 
         /* Search */
-        function searchWebsite() {
 
-            const searchText =
-                document.getElementById("searchInput")
-                .value
-                .trim()
-                .toLowerCase();
+/* Search Website */
+function searchWebsite() {
+    const input = document.getElementById("searchInput");
+    const searchText = input.value.trim();
 
-            if (searchText === "") {
+    if (!searchText) {
+        alert("Please enter something to search.");
+        return;
+    }
 
-                alert("Please enter something to search.");
+    // Remove previous highlights
+    document.querySelectorAll(".search-highlight").forEach(el => {
+        el.replaceWith(document.createTextNode(el.textContent));
+        el.parentNode?.normalize();
+    });
 
-                return;
-            }
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT
+    );
 
-            const pageText =
-                document.body.innerText.toLowerCase();
+    const matches = [];
+    let node;
 
-            if (pageText.includes(searchText)) {
+    while (node = walker.nextNode()) {
+        const parent = node.parentElement;
 
-                alert("✅ Found: " + searchText);
+        if (
+            !parent ||
+            parent.closest("script, style, input, button, nav, #imageViewer, #topBtn, #themeBtn, footer")
+        ) continue;
 
-            } else {
-
-                alert("❌ Nothing found for: " + searchText);
-
-            }
+        if (
+            node.textContent.toLowerCase().includes(searchText.toLowerCase())
+        ) {
+            matches.push(node);
         }
+    }
+
+    if (matches.length === 0) {
+        alert("Nothing found for: " + searchText);
+        return;
+    }
+
+    const firstMatch = matches[0];
+    const text = firstMatch.textContent;
+    const index = text.toLowerCase().indexOf(searchText.toLowerCase());
+
+    const before = document.createTextNode(text.slice(0, index));
+    const highlight = document.createElement("mark");
+    highlight.className = "search-highlight";
+    highlight.textContent = text.slice(index, index + searchText.length);
+
+    const after = document.createTextNode(
+        text.slice(index + searchText.length)
+    );
+
+    const fragment = document.createDocumentFragment();
+    fragment.append(before, highlight, after);
+    firstMatch.parentNode.replaceChild(fragment, firstMatch);
+
+    highlight.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    alert("Found " + matches.length + " matching text location(s).");
+}
 
 
         /* Back to Top */
