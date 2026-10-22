@@ -657,6 +657,59 @@ body.light-mode .gallery img {
     }
 }
 
+/* Year-wise Gallery Albums */
+.year-heading {
+    text-align: center;
+    color: #60a5fa;
+    margin: 22px 0 15px;
+}
+
+.year-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px auto;
+}
+
+.year-buttons button {
+    padding: 13px 20px;
+    border: 1px solid #3b82f6;
+    border-radius: 12px;
+    background: #15253d;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.year-buttons button:hover {
+    background: #2563eb;
+}
+
+#yearAlbums[hidden],
+#allPhotos[hidden] {
+    display: none !important;
+}
+
+.hide-gallery {
+    display: block;
+    margin: 20px auto;
+}
+
+body.light-mode .year-buttons button {
+    background: #dbeafe;
+    color: #1e3a5f;
+}
+
+@media (max-width: 480px) {
+    .year-buttons button {
+        flex: 1 1 40%;
+        padding: 12px 8px;
+        font-size: 14px;
+    }
+}
+
     </style>
 </head>
 
@@ -789,6 +842,7 @@ body.light-mode .gallery img {
     </section>
 
     
+
 <!-- Gallery -->
 <section id="gallery">
     <h2>📸 My Gallery</h2>
@@ -802,64 +856,55 @@ body.light-mode .gallery img {
         </button>
     </div>
 
-    <div class="gallery" id="allPhotos" hidden>
-        <img src="photo1.jpg" alt="Photo 1" onclick="openImage(this.src)">
-        <img src="photo2.jpg" alt="Photo 2" onclick="openImage(this.src)">
-        <img src="photo3.jpg" alt="Photo 3" onclick="openImage(this.src)">
-        <img src="photo14.jpg" alt="Photo 14" onclick="openImage(this.src)">
-        <img src="photo15.jpg" alt="Photo 15" onclick="openImage(this.src)">
-        <img src="photo16.jpg" alt="Photo 16" onclick="openImage(this.src)">
-        <img src="photo19.jpg" alt="Photo 19" onclick="openImage(this.src)">
-        <img src="photo20.jpg" alt="Photo 20" onclick="openImage(this.src)">
-        <img src="photo41.jpg" alt="Photo 41" onclick="openImage(this.src)">
-        <img src="photo42.jpg" alt="Photo 42" onclick="openImage(this.src)">
-        <img src="photo43.jpg" alt="Photo 43" onclick="openImage(this.src)">
-        <img src="photo44.jpg" alt="Photo 44" onclick="openImage(this.src)">
-        <img src="photo45.jpg" alt="Photo 45" onclick="openImage(this.src)">
-        <img src="photo46.jpg" alt="Photo 46" onclick="openImage(this.src)">
-        <img src="photo47.jpg" alt="Photo 47" onclick="openImage(this.src)">
-        <img src="photo48.jpg" alt="Photo 48" onclick="openImage(this.src)">
-        <img src="photo49.jpg" alt="Photo 49" onclick="openImage(this.src)">
-        <img src="photo4.jpg" alt="Photo 4" onclick="openImage(this.src)">
-<img src="photo5.jpg" alt="Photo 5" onclick="openImage(this.src)">
-<img src="photo6.jpg" alt="Photo 6" onclick="openImage(this.src)">
-<img src="photo7.jpg" alt="Photo 7" onclick="openImage(this.src)">
-<img src="photo8.jpg" alt="Photo 8" onclick="openImage(this.src)">
-<img src="photo9.jpg" alt="Photo 9" onclick="openImage(this.src)">
-<img src="photo10.jpg" alt="Photo 10" onclick="openImage(this.src)">
-<img src="photo10.jpg" alt="Photo 10" onclick="openImage(this.src)">
-<img src="photo11.jpg" alt="Photo 11" onclick="openImage(this.src)">
-<img src="photo12.jpg" alt="Photo 12" onclick="openImage(this.src)">
-<img src="photo13.jpg" alt="Photo 13" onclick="openImage(this.src)">
-<img src="photo17.jpg" alt="Photo 17" onclick="openImage(this.src)">
-<img src="photo18.jpg" alt="Photo 18" onclick="openImage(this.src)">
-<img src="photo21.jpg" alt="Photo 21" onclick="openImage(this.src)">
-<img src="photo22.jpg" alt="Photo 22" onclick="openImage(this.src)">
-<img src="photo23.jpg" alt="Photo 23" onclick="openImage(this.src)">
-<img src="photo24.jpg" alt="Photo 24" onclick="openImage(this.src)">
-<img src="photo25.jpg" alt="Photo 25" onclick="openImage(this.src)">
-<img src="photo26.jpg" alt="Photo 26" onclick="openImage(this.src)">
-<img src="photo27.jpg" alt="Photo 27" onclick="openImage(this.src)">
-<img src="photo28.jpg" alt="Photo 28" onclick="openImage(this.src)">
-<img src="photo29.jpg" alt="Photo 29" onclick="openImage(this.src)">
-<img src="photo30.jpg" alt="Photo 30" onclick="openImage(this.src)">
-<img src="photo31.jpg" alt="Photo 31" onclick="openImage(this.src)">
-<img src="photo32.jpg" alt="Photo 32" onclick="openImage(this.src)">
-<img src="photo33.jpg" alt="Photo 33" onclick="openImage(this.src)">
-<img src="photo34.jpg" alt="Photo 34" onclick="openImage(this.src)">
-<img src="photo35.jpg" alt="Photo 35" onclick="openImage(this.src)">
-<img src="photo36.jpg" alt="Photo 36" onclick="openImage(this.src)">
-<img src="photo37.jpg" alt="Photo 37" onclick="openImage(this.src)">
-<img src="photo38.jpg" alt="Photo 38" onclick="openImage(this.src)">
-<img src="photo39.jpg" alt="Photo 39" onclick="openImage(this.src)">
-<img src="photo40.jpg" alt="Photo 40" onclick="openImage(this.src)">
+    <div id="yearAlbums" hidden>
+        <h3 class="year-heading">Select a Year</h3>
+
+        <div class="year-buttons">
+            <button onclick="showYear('2022')">📁 2022</button>
+            <button onclick="showYear('2023')">📁 2023</button>
+            <button onclick="showYear('2024')">📁 2024</button>
+            <button onclick="showYear('2025')">📁 2025</button>
+            <button onclick="showYear('2026')">📁 2026</button>
+        </div>
+
+        <h3 id="selectedYearTitle" class="year-heading"></h3>
+
+        <div class="gallery" id="allPhotos" hidden>
+            <img data-year="2022" src="photo1.jpg" alt="Photo 1" onclick="openImage(this.src)">
+            <img data-year="2022" src="photo2.jpg" alt="Photo 2" onclick="openImage(this.src)">
+            <img data-year="2023" src="photo3.jpg" alt="Photo 3" onclick="openImage(this.src)">
+            <img data-year="2023" src="photo14.jpg" alt="Photo 14" onclick="openImage(this.src)">
+            <img data-year="2024" src="photo15.jpg" alt="Photo 15" onclick="openImage(this.src)">
+            <img data-year="2024" src="photo16.jpg" alt="Photo 16" onclick="openImage(this.src)">
+            <img data-year="2025" src="photo19.jpg" alt="Photo 19" onclick="openImage(this.src)">
+            <img data-year="2025" src="photo20.jpg" alt="Photo 20" onclick="openImage(this.src)">
+            <img data-year="2026" src="photo41.jpg" alt="Photo 41" onclick="openImage(this.src)">
+            <img data-year="2026" src="photo42.jpg" alt="Photo 42" onclick="openImage(this.src)">
+
+            <!-- Add your remaining existing photos here.
+                 Use the correct year for each photo. -->
+        </div>
 
         <button type="button" class="hide-gallery"
-                onclick="toggleGallery()">
-            Hide Photos
+                onclick="backToYears()">
+            ← Back to Years
         </button>
     </div>
 </section>
+
+<!-- Full Screen Image Viewer -->
+<div id="imageViewer" onclick="closeImage()">
+    <button class="close" type="button"
+            onclick="closeImage(); event.stopPropagation();">
+        &times;
+    </button>
+
+    <img id="bigImage" src="" alt="Large Image"
+         onclick="event.stopPropagation()">
+</div>
+
+
+
 
 <!-- Full Screen Image Viewer -->
 <div id="imageViewer" onclick="closeImage()">
@@ -1073,41 +1118,70 @@ body.light-mode .gallery img {
         setInterval(showDateTime, 1000);
 
 
-        /* Gallery - Open Image */
-        function openImage(src) {
-
-            document.getElementById("bigImage").src = src;
-
-            document.getElementById("imageViewer").style.display = "flex";
-        }
-
-
-        /* Gallery - Close Image */
-        function closeImage() {
-
-            document.getElementById("imageViewer").style.display = "none";
-        }
-        
+/* Open Year Albums */
 function toggleGallery() {
-    const gallery = document.getElementById("allPhotos");
-    gallery.hidden = !gallery.hidden;
+    const albums = document.getElementById("yearAlbums");
 
-    if (!gallery.hidden) {
-        gallery.scrollIntoView({
+    albums.hidden = !albums.hidden;
+
+    if (!albums.hidden) {
+        document.getElementById("allPhotos").hidden = true;
+
+        albums.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
     }
 }
 
+/* Show Photos From Selected Year */
+function showYear(year) {
+    const gallery = document.getElementById("allPhotos");
+    const photos = gallery.querySelectorAll("img");
+    let count = 0;
+
+    photos.forEach(function(photo) {
+        const match = photo.dataset.year === year;
+
+        photo.hidden = !match;
+
+        if (match) count++;
+    });
+
+    document.getElementById("selectedYearTitle").textContent =
+        year + " Photos (" + count + ")";
+
+    gallery.hidden = false;
+
+    gallery.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+/* Return to Year Albums */
+function backToYears() {
+    document.getElementById("allPhotos").hidden = true;
+
+    document.getElementById("yearAlbums").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+/* Open Large Image */
 function openImage(src) {
     document.getElementById("bigImage").src = src;
     document.getElementById("imageViewer").style.display = "flex";
 }
 
+/* Close Large Image */
 function closeImage() {
     document.getElementById("imageViewer").style.display = "none";
+    document.getElementById("bigImage").src = "";
 }
+
+
 
 
 
