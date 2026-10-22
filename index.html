@@ -941,63 +941,38 @@
             }
         }
 
-        /* Show Photos From Selected Year */
-        function showYear(year) {
-            const gallery = document.getElementById("allPhotos");
-            const photos = gallery.querySelectorAll("img");
-            let count = 0;
+        
+/* Show Photos From Selected Year */
+function showYear(year) {
+    const gallery = document.getElementById("allPhotos");
+    const photos = gallery.querySelectorAll("img");
+    const title = document.getElementById("selectedYearTitle");
 
-            photos.forEach(function(photo) {
-                const match = photo.dataset.year === year;
-                photo.hidden = !match;
+    let count = 0;
 
-                if (match) {
-                    count++;
-                }
-            });
+    photos.forEach(function(photo) {
+        const match = photo.dataset.year === String(year);
 
-            document.getElementById("selectedYearTitle").textContent =
-                year + " Photos (" + count + ")";
+        photo.hidden = !match;
 
-            gallery.hidden = false;
+        if (match) {
+            count++;
 
-            gallery.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+            // Load only the selected year's photos eagerly
+            photo.loading = "eager";
+            photo.decoding = "async";
         }
+    });
 
-        /* Return to Year Albums */
-        function backToYears() {
-            document.getElementById("allPhotos").hidden = true;
+    title.textContent = year + " Photos (" + count + ")";
+    gallery.hidden = false;
 
-            document.getElementById("yearAlbums").scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
+    gallery.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
 
-        /* Open Large Image */
-        function openImage(src) {
-            const viewer = document.getElementById("imageViewer");
-            const bigImage = document.getElementById("bigImage");
-
-            bigImage.src = src;
-            viewer.style.display = "flex";
-        }
-
-        /* Close Large Image */
-        function closeImage() {
-            document.getElementById("imageViewer").style.display = "none";
-            document.getElementById("bigImage").src = "";
-        }
-
-        /* Close Image With Escape Key */
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape") {
-                closeImage();
-            }
-        });
 
          
 /* Search Website */
